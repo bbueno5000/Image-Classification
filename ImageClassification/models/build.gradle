@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+    id "de.undercouch.download" version "5.0.2"
+}
+
+android {
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionCode 1
+        versionName "1.0"
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
+apply from:'download.gradle'

@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+        targetSdkVersion 31
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'org.tensorflow:tensorflow-lite:2.8.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.8.0'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.3.1'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.3.1'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":models")
+}
